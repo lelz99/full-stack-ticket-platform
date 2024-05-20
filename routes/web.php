@@ -28,6 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::resource('tickets', App\Http\Controllers\TicketController::class);
+Route::resource('tickets', App\Http\Controllers\TicketController::class)->except('destroy');
