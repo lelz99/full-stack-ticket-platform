@@ -10,7 +10,7 @@
             <span class="d-none d-xl-inline">Assegna un ticket</span>
         </a>
     </div>
-    <table class="table text-center">
+    <table class="table text-center align-middle">
         <thead>
             <tr>
                 <th scope="col">Titolo</th>
@@ -26,8 +26,8 @@
             <tr>
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->user->name}}</td>
-                <td>{{$ticket->category}}</td>
-                <td>{{$ticket->state}}</td>
+                <td><span class="{{ 'category-' . $ticket->category }}">{{ $ticket->category }}</span></td>
+                <td><span class="{{ 'state-' . str_replace(' ', '-', strtolower($ticket->state)) }}">{{ $ticket->state }}</span></td>
                 <td>{{$ticket->getCreatedAt($ticket->created_at)}}</td>
                 <td><a class="btn btn-sm btn-primary " href="{{route('tickets.show', $ticket->id)}}"><i class="fa-solid fa-eye"></i></a></td>
             </tr>
@@ -40,3 +40,4 @@
     </table>
 </div>
 @endsection
+
