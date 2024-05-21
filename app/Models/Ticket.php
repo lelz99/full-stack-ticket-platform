@@ -15,7 +15,7 @@ class Ticket extends Model
     // Modifica visualizzazione data e ora
     public function getCreatedAt()
     {
-        return Carbon::create($this->created_at)->format('H:i:s d-m-Y');
+        return Carbon::create($this->created_at)->format('H:i d-m-Y');
     }
 
 
