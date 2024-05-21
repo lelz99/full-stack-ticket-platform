@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -12,7 +13,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = Ticket::with('user')->orderBy('user_id')->orderBy('category')->orderBy('state')->orderBy('created_at')->get();
+        return view('tickets.index', compact('tickets'));
     }
 
     /**

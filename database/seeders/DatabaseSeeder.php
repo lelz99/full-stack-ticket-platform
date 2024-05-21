@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'role' => 'Admin',
-            'email' => 'test@example.com',
+            'email' => 'test@prova.com',
         ]);
 
         $this->call(TicketSeeder::class);
