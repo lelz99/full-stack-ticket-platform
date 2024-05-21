@@ -22,7 +22,10 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $tickets = Ticket::all();
+        $users = User::all();
+
+        return view('tickets.create', compact('tickets', 'users'));
     }
 
     /**
@@ -30,7 +33,25 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|min:5|max:50',
+            'state' => 'nullable',
+            'description' => 'required|string',
+            'category' => 'required|string',
+            'user_id' => 'nullable'
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'description.required' => 'la descrizione è obbligatoria',
+            'category.required' => 'La categoria è obbligatorio',
+        ]);
+
+        $data = $request->all();
+        $tickets = new Ticket();
+        $tickets->fill($data);
+        $tickets['state'] = 'assegnato';
+        $tickets->save();
+
+        return to_route('tickets.index');
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
+use App\Models\Ticket;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ use App\Http\Controllers\TicketController;
 //     return view('tickets.index');
 // });
 
-Route::get('/dashboard', function () {
-    return view('tickets.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', function () {
+    return to_route('tickets.index');
+})->middleware(['auth', 'verified'])->name('tickets.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

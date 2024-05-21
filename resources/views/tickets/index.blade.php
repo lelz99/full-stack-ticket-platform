@@ -2,6 +2,7 @@
 
 @section('content')
 
+<a href="{{route('tickets.create')}}">prova</a>
 
 <div class="container mt-3">
     <table class="table">
