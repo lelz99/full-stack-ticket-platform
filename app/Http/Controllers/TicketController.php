@@ -35,14 +35,16 @@ class TicketController extends Controller
     {
         $request->validate([
             'title' => 'required|string|min:5|max:50',
-            'state' => 'nullable',
             'description' => 'required|string',
             'category' => 'required|string',
-            'user_id' => 'nullable'
+            'user_id' => 'required'
         ], [
             'title.required' => 'Il titolo è obbligatorio',
-            'description.required' => 'la descrizione è obbligatoria',
+            'title.min' => 'Il titolo deve avere minimo :min caratteri',
+            'title.max' => 'Il titolo deve avere massimo :max caratteri',
+            'description.required' => 'La descrizione è obbligatoria',
             'category.required' => 'La categoria è obbligatorio',
+            'user_id.required' => 'Seleziona un operatore',
         ]);
 
         $data = $request->all();

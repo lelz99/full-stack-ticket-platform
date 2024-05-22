@@ -11,7 +11,7 @@
                 <label for="title" class="form-label ms-3 mt-3">Titolo Ticket<span class="text-danger"><strong><sup>*</sup></strong></span></label>
                 <input name="title" value="{{old('title', '')}}" type="text" class="form-control bg-transparent border-dark-light rounded-pill @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror"  id="title">
                 @error('title')   
-                    <div class="invalid-feedback">{{$message}}</div>
+                    <div class="invalid-feedback mb-2">{{$message}}</div>
                 @else
                     <div class="form-text mb-2 ms-3">
                         Inserisci il titolo del ticket
@@ -22,48 +22,46 @@
 
         {{-- Input category --}}
         <div class="col-3">
-            <label class="form-label label ms-3 mt-3" for="category">Categoria</label>
-            <select class="form-select bg-transparent border-dark-light rounded-pill" name="category" id="category">
+            <label class="form-label label ms-3 mt-3" for="category" >Categoria<span class="text-danger"><strong><sup>*</sup></strong></span></label>
+            <select class="form-select bg-transparent border-dark-light rounded-pill @error('category') is-invalid @elseif(old('category', '')) is-valid @enderror" name="category" id="category">
                 <option 
-                    value="" {{ old('category') ? '' : 'selected' }}>Scegli un'opzione
+                    value=""> -- --
                 </option>
-                <option value="Bug generico">Bug generico</option>
-                <option value="Richiesta aiuto">Richiesta aiuto</option>
-                <option value="Errore di caricamento">Errore di caricamento</option>
+                <option @if(old('category') == 'bug') selected @endif value="bug">bug</option>
+                <option @if(old('category') == 'feature request') selected @endif value="feature request">feature request</option>
+                <option @if(old('category') == 'enhancement') selected @endif value="enhancement">enhancement</option>
             </select>
             @error('category')   
-            <div class="invalid-feedback">{{$message}}</div>
+            <div class="invalid-feedback mb-2">{{$message}}</div>
             @else
                 <div class="form-text mb-2 ms-3">
-                    Inserisci il titolo del ticket
+                    Seleziona una categoria
                 </div>
             @enderror
         </div>
 
         {{-- Input user --}}
         <div class="col-3">
-            <label class="form-label label ms-3 mt-3" for="user_id">Operatore</label>
-            <select class="form-select bg-transparent border-dark-light rounded-pill" name="user_id" id="user_id">
-                <option 
-                    value="" {{ old('user_id') ? '' : 'selected' }}>Scegli un'opzione
-                </option>
+            <label class="form-label label ms-3 mt-3" for="user_id">Operatore<span class="text-danger"><strong><sup>*</sup></strong></span></label>
+            <select class="form-select bg-transparent border-dark-light rounded-pill @error('user_id') is-invalid @elseif(old('user_id', '')) is-valid @enderror" name="user_id" id="user_id">
+                <option  value="">-- -- </option>
                 @foreach($users as $user)
-                <option value="{{$user->id}}">{{$user->name}}</option>
+                    <option @if($user->role == 'Admin') class="d-none" @endif @if(old('user_id') == $user->id) selected @endif value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
             </select>
             @error('user_id')   
-            <div class="invalid-feedback">{{$message}}</div>
+            <div class="invalid-feedback mb-2">{{$message}}</div>
             @else
                 <div class="form-text mb-2 ms-3">
-                    Inserisci il titolo del ticket
+                    Assegna il ticket ad un operatore 
                 </div>
             @enderror
         </div>
 
         {{-- Input description --}}
-        <div class="pt-2 mb-4">
-            <label for="description" class="form-label label ms-3 mt-5">Inserisci una descrizione</label>
-            <textarea class="col-12 mb-0 rounded-4 p-4" name="description" id="description" rows="10"></textarea>
+        <div class="mb-4">
+            <label for="description" class="form-label label ms-3 mt-3">Inserisci una descrizione<span class="text-danger"><strong><sup>*</sup></strong></span></label>
+            <textarea class="col-12 mb-0 rounded-4 border p-4 @error('description') is-invalid border-danger @elseif(old('description', '')) is-valid @enderror" name="description" id="description" rows="10"></textarea>
             @error('description')   
                 <div class="invalid-feedback">{{$message}}</div>   
             @enderror
