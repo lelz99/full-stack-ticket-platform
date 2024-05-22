@@ -16,9 +16,9 @@ use App\Models\Ticket;
 |
 */
 
-// Route::get('/', function () {
-//     return view('tickets.index');
-// });
+Route::get('/', function () {
+    return view('tickets.index');
+});
 
 Route::get('/', function () {
     return to_route('tickets.index');
