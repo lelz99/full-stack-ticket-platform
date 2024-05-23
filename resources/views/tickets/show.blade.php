@@ -5,9 +5,9 @@
         <div class="card shadow-lg w-75 m-auto rounded-5 px-5">
             <div class="d-flex pt-3 pb-3 justify-content-between align-items-center">
                 <h3 class="p-2 mb-0">{{$ticket->title}}</h3>
-                <div class="p-2 mb-0">
-                    <span class="badge rounded-pill text-bg-primary">{{$ticket->state}}</span>
-                    <span class="badge rounded-pill text-bg-primary">{{$ticket->category}}</span>
+                <div class="p-2 mb-0 badge-container">
+                    <span class="{{ 'category-' . $ticket->category }}">{{ $ticket->category }}</span>
+                    <span class="{{ 'state-' . str_replace(' ', '-', strtolower($ticket->state)) }}">{{ $ticket->state }}
                 </div>
             </div>
 

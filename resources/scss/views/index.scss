@@ -1,29 +1,41 @@
 // Categorie
+
+td span {
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 2px 10px;
+}
+
 .category-bug {
-    color: #d9534f;
+    background-color: lighten(#df342e, 44%);
+    color: #df342e;
 }
 
 .category-feature {
+    background-color: lighten(#5bc0de, 37%);
     color: #5bc0de;
 }
 
 .category-enhancement {
+    background-color: lighten(#5cb85c, 45%);
     color: #5cb85c;
 
 }
 
 // Stati 
 .state-assegnato {
+    background-color: lighten(#f0ad4e, 36%);
     color: #f0ad4e;
-
 }
 
 .state-in-lavorazione {
+    background-color: lighten(#0275d8, 55%);
     color: #0275d8;
 
 }
 
 .state-chiuso {
-    color: #5cb85c;
+    background-color: lighten(#1daf1d, 59%);
+    color: #1daf1d;
 
 }
