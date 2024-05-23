@@ -77,6 +77,9 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        //
+        $request['state'];
+        $ticket->state = $request['state'];
+        $ticket->save();
+        return to_route('tickets.index');
     }
 }

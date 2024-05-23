@@ -27,7 +27,24 @@
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->user->name}}</td>
                 <td><span class="{{ 'category-' . $ticket->category }}">{{ $ticket->category }}</span></td>
-                <td><span class="{{ 'state-' . str_replace(' ', '-', strtolower($ticket->state)) }}">{{ $ticket->state }}</span></td>
+                <td>
+                    <span role="button" class="{{ 'state-' . str_replace(' ', '-', strtolower($ticket->state)) }} badge-drop-down update-state">
+                        {{ $ticket->state }}
+                        <i class="fa-solid fa-angle-down"></i>
+                    </span>
+                    <form action="{{route('tickets.update', $ticket->id)}}" method="POST" class="form-state d-flex align-items-center justify-content-center gap-1 pt-1 d-none mb-0">
+                        @csrf 
+                        @method('PATCH')
+                        <select class="rounded-pill p-1" name="state">
+                            <option @if($ticket->state == 'assegnato') selected @endif value="assegnato">Assegnato</option>
+                            <option @if($ticket->state == 'in lavorazione') selected @endif value="in lavorazione">In lavorazione</option>
+                            <option @if($ticket->state == 'chiuso') selected @endif value="chiuso">Chiuso</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm px-1 py-0 rounded-pill btn-success">
+                            salva
+                        </button>
+                    </form>
+                </td>
                 <td>{{$ticket->getCreatedAt($ticket->created_at)}}</td>
                 <td><a class="btn btn-sm btn-primary " href="{{route('tickets.show', $ticket->id)}}"><i class="fa-solid fa-eye"></i></a></td>
             </tr>
@@ -41,3 +58,4 @@
 </div>
 @endsection
 
+@vite('resources/js/select_state.js')
